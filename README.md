@@ -30,12 +30,12 @@ To get a local copy up and running, follow these steps:
 
 3. Build the Docker image:
     ```bash
-    docker-compose build
+    docker compose build
     ```
 
 4. Start the application:
     ```bash
-    docker-compose up
+    docker compose up
     ```
 
 The application should now be running at `http://localhost:8000`.
@@ -45,5 +45,3 @@ The application should now be running at `http://localhost:8000`.
 Contributions are welcome. Please open an issue first to discuss what you would like to change.
 
 ## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
