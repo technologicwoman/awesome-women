@@ -104,3 +104,12 @@
 .purple-background {
   background-color: #A070F7;
 }
+
+.btn-icon {
+  align-self: center;
+  color: #ffffff;
+}
+
+.quote {
+  font-style: italic;
+}

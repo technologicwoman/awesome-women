@@ -1,5 +1,5 @@
-async function initMap() {
-    const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+async function initMap(womanData) {
+    const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
     const mapInitOptions = {
@@ -11,27 +11,27 @@ async function initMap() {
     let markers = [];
 
     map = new Map(document.getElementById("WomenMap"), mapInitOptions);
-    womenData.forEach(woman => {
-        const iconImage = womanPinIcon();
+    
+    womanData.forEach(woman => {
+        const womanPresenterInstance = new WomanPresenter(woman);
+        const iconImage = womanPresenterInstance.pinIcon();
         const pin = new PinElement({
             glyph: iconImage,
             background: "#6c25be",
             borderColor: "#6c25be"
         });  
         const marker = new AdvancedMarkerElement({
-            position: { lat: woman["Country Lat"], lng: woman["Country Lng"] },
+            position: { 
+                lat: womanPresenterInstance.data.birth_city.lat, 
+                lng: womanPresenterInstance.data.birth_city.ln 
+            },
             map: map,
-            title: woman["Name"],
+            title: womanPresenterInstance.data.name,
             content: pin.element
         });
-
-        const infoWindow = new InfoWindow({
-            content:  womanDetail(woman["Name"], woman["Description"], woman["Quote"], woman["Picture"])
-        });
-
+        
         marker.addListener("click", () => {
-            infoWindow.open(map, marker);
-
+            womanPresenterInstance.showWomanDetail();
         });
 
         markers.push(marker);
@@ -39,4 +39,6 @@ async function initMap() {
     
     // Add a marker clusterer to manage the markers.
     new markerClusterer.MarkerClusterer({ markers, map });
+
 }
+
