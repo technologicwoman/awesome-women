@@ -12,9 +12,9 @@ RUN npm install -g create-react-app
 RUN npm install three react-bootstrap bootstrap tailwindcss d3
 
 # Expose the port
-EXPOSE 3000
+EXPOSE 8080
 
 # Command to create a new React application
-CMD ["http-server", ".", "8000"]
+CMD ["http-server", ".", "8080"]
 
-#ENTRYPOINT [ "", "npm start" ]
+#ENTRYPOINT [ "", "npm st}art" ]
